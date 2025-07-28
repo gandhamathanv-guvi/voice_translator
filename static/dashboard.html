@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Station Announcements</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <h1>🚂 Railway Station Announcements</h1>
+                <div class="user-controls">
+                    <span id="welcomeMessage">Welcome, Station Master!</span>
+                    <a href="/translate" class="btn btn-primary">🌍 Translate</a>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="dashboard-content">
+
+                <!-- Language Selection Section -->
+                <div class="card">
+                    <h2>🌍 Select Announcement Language</h2>
+                    <div class="form-group">
+                        <label for="targetLanguages">Choose Language:</label>
+                        <select id="targetLanguages" name="targetLanguages">
+                            <option value="">Loading languages...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Pre-defined Train Announcements -->
+                <div class="card">
+                    <h2>🚂 Train Announcements</h2>
+                    <div class="announcements-grid">
+                        <div class="announcement-card" data-announcement="1">
+                            <div class="train-info">
+                                <h3>Chennai Express - 12623</h3>
+                                <p><strong>Route:</strong> Bangalore → Chennai Central</p>
+                                <p><strong>Platform:</strong> 2</p>
+                            </div>
+                            <div class="announcement-text">
+                                May I have your attention please! Train number 12623, Chennai Express from Bangalore to Chennai Central, scheduled to arrive at platform number 2, is arriving shortly.
+                            </div>
+                            <button class="btn btn-primary announcement-btn" data-text="May I have your attention please! Train number 12623, Chennai Express from Bangalore to Chennai Central, scheduled to arrive at platform number 2, is arriving shortly.">
+                                📢 Play Announcement
+                            </button>
+                        </div>
+
+                        <div class="announcement-card" data-announcement="2">
+                            <div class="train-info">
+                                <h3>Rajdhani Express - 12302</h3>
+                                <p><strong>Route:</strong> New Delhi → Mumbai Central</p>
+                                <p><strong>Platform:</strong> 5</p>
+                            </div>
+                            <div class="announcement-text">
+                                Attention passengers! Train number 12302, Rajdhani Express from New Delhi to Mumbai Central, is now departing from platform number 5. All passengers are requested to board immediately.
+                            </div>
+                            <button class="btn btn-primary announcement-btn" data-text="Attention passengers! Train number 12302, Rajdhani Express from New Delhi to Mumbai Central, is now departing from platform number 5. All passengers are requested to board immediately.">
+                                📢 Play Announcement
+                            </button>
+                        </div>
+
+                        <div class="announcement-card" data-announcement="3">
+                            <div class="train-info">
+                                <h3>Shatabdi Express - 12008</h3>
+                                <p><strong>Route:</strong> Chennai Central → Mysore</p>
+                                <p><strong>Platform:</strong> 3</p>
+                            </div>
+                            <div class="announcement-text">
+                                Good morning passengers! Train number 12008, Shatabdi Express to Mysore Junction, is ready for departure from platform number 3. Please ensure you have your tickets ready for inspection.
+                            </div>
+                            <button class="btn btn-primary announcement-btn" data-text="Good morning passengers! Train number 12008, Shatabdi Express to Mysore Junction, is ready for departure from platform number 3. Please ensure you have your tickets ready for inspection.">
+                                📢 Play Announcement
+                            </button>
+                        </div>
+
+                        <div class="announcement-card" data-announcement="4">
+                            <div class="train-info">
+                                <h3>Duronto Express - 12260</h3>
+                                <p><strong>Route:</strong> Kolkata → New Delhi</p>
+                                <p><strong>Platform:</strong> 1</p>
+                            </div>
+                            <div class="announcement-text">
+                                Important announcement! Train number 12260, Duronto Express from Kolkata to New Delhi, is running 15 minutes late. Expected arrival at platform number 1 is now 3:45 PM. We apologize for the inconvenience.
+                            </div>
+                            <button class="btn btn-primary announcement-btn" data-text="Important announcement! Train number 12260, Duronto Express from Kolkata to New Delhi, is running 15 minutes late. Expected arrival at platform number 1 is now 3:45 PM. We apologize for the inconvenience.">
+                                📢 Play Announcement
+                            </button>
+                        </div>
+
+                        <div class="announcement-card" data-announcement="5">
+                            <div class="train-info">
+                                <h3>Garib Rath - 12512</h3>
+                                <p><strong>Route:</strong> Bangalore → Gorakhpur</p>
+                                <p><strong>Platform:</strong> 4</p>
+                            </div>
+                            <div class="announcement-text">
+                                Passengers attention please! Train number 12512, Garib Rath Express bound for Gorakhpur, will be arriving at platform number 4 in approximately 10 minutes. Please maintain safe distance from the platform edge.
+                            </div>
+                            <button class="btn btn-primary announcement-btn" data-text="Passengers attention please! Train number 12512, Garib Rath Express bound for Gorakhpur, will be arriving at platform number 4 in approximately 10 minutes. Please maintain safe distance from the platform edge.">
+                                📢 Play Announcement
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audio Player Section -->
+                <div class="card" id="audioSection" style="display: none;">
+                    <h3>🔊 Playing Announcement</h3>
+                    <div class="audio-info">
+                        <p><strong>Language:</strong> <span id="audioLanguage"></span></p>
+                        <p><strong>Announcement:</strong> <span id="audioText"></span></p>
+                    </div>
+                    <audio id="audioPlayer" controls autoplay>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <div class="audio-controls">
+                        <button id="downloadBtn" class="btn btn-secondary">📥 Download</button>
+                        <button id="newAudioBtn" class="btn btn-outline">🔄 Select Another</button>
+                    </div>
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Generating announcement...</p>
+                </div>
+
+                <!-- Message Container -->
+                <div id="messageContainer" class="message-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

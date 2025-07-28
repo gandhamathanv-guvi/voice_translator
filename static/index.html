@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Translator - Login</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h1>🎤 Voice Translator</h1>
+                <p>Translate and speak text in multiple languages</p>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2>Login</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginUsername">Username:</label>
+                        <input type="text" id="loginUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <a href="#" id="showSignup">Sign up here</a>
+                </p>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signupForm" class="auth-form" style="display: none;">
+                <h2>Sign Up</h2>
+                <form id="signupFormElement">
+                    <div class="form-group">
+                        <label for="signupUsername">Username:</label>
+                        <input type="text" id="signupUsername" name="username" required minlength="3">
+                        <small>At least 3 characters</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password:</label>
+                        <input type="password" id="signupPassword" name="password" required minlength="6">
+                        <small>At least 6 characters</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="#" id="showLogin">Login here</a>
+                </p>
+            </div>
+
+            <!-- Messages -->
+            <div id="messageContainer" class="message-container"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+</body>
+</html>
